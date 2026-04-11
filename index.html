@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MPL Design & Build | شركة مشاريع عصرية</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- SCROLL PROGRESS -->
+<div id="spb"></div>
+
+<!-- STICKY WHATSAPP — pulse rings confirm it's live -->
+<a href="https://wa.me/966533132060" target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- PRIVACY MODAL -->
+<div class="prv-overlay" id="prvModal">
+  <div class="prv-box">
+    <button class="prv-close" onclick="closePrivacy()">✕</button>
+    <div class="prv-sub" data-ar="سياسة الخصوصية" data-en="Privacy Policy">سياسة الخصوصية</div>
+    <h2 data-ar="كيف نحمي بياناتك" data-en="How We Protect Your Data">كيف نحمي بياناتك</h2>
+    <div class="prv-sec"><h3 data-ar="المعلومات التي نجمعها" data-en="Information We Collect">المعلومات التي نجمعها</h3><p data-ar="عند تواصلك معنا عبر البريد الإلكتروني أو واتساب أو أي قناة اتصال أخرى، قد نجمع اسمك ومعلومات الاتصال الخاصة بك واستفسارات مشروعك. لا نجمع بياناتك التعريفية تلقائياً عبر هذا الموقع." data-en="When you contact us via email, WhatsApp, or any other channel, we may collect your name, contact information, and project enquiry details. We do not automatically collect personal identifiers through this website.">عند تواصلك معنا عبر البريد الإلكتروني أو واتساب أو أي قناة اتصال أخرى، قد نجمع اسمك ومعلومات الاتصال الخاصة بك واستفسارات مشروعك. لا نجمع بياناتك التعريفية تلقائياً عبر هذا الموقع.</p></div>
+    <div class="prv-sec"><h3 data-ar="كيف نستخدم معلوماتك" data-en="How We Use Your Information">كيف نستخدم معلوماتك</h3><p data-ar="تُستخدم المعلومات حصرياً للرد على استفساراتك وتقديم عروض الخدمات. لا نبيع بياناتك ولا نشاركها مع أطراف ثالثة لأغراض تسويقية." data-en="Information you share is used exclusively to respond to your enquiries and provide relevant service proposals. We do not sell your data or share it with third parties for marketing purposes.">تُستخدم المعلومات حصرياً للرد على استفساراتك وتقديم عروض الخدمات. لا نبيع بياناتك ولا نشاركها مع أطراف ثالثة لأغراض تسويقية.</p></div>
+    <div class="prv-sec"><h3 data-ar="الامتثال لنظام حماية البيانات" data-en="PDPL Compliance">الامتثال لنظام حماية البيانات</h3><p data-ar="تلتزم MPL بنظام حماية البيانات الشخصية في المملكة العربية السعودية (PDPL). نطبق إجراءات تقنية وتنظيمية لحماية بياناتك من الوصول غير المصرح به." data-en="MPL complies with the Saudi Personal Data Protection Law (PDPL). We apply appropriate technical and organizational measures to protect your personal data from unauthorized access or disclosure.">تلتزم MPL بنظام حماية البيانات الشخصية في المملكة العربية السعودية (PDPL). نطبق إجراءات تقنية وتنظيمية لحماية بياناتك من الوصول غير المصرح به.</p></div>
+    <div class="prv-sec"><h3 data-ar="حقوقك" data-en="Your Rights">حقوقك</h3><p data-ar="يحق لك طلب الاطلاع على بياناتك أو تصحيحها أو حذفها في أي وقت. للتواصل: info@mpl.com.sa" data-en="You have the right to request access, correction, or deletion of your personal data at any time. Contact: info@mpl.com.sa">يحق لك طلب الاطلاع على بياناتك أو تصحيحها أو حذفها في أي وقت. للتواصل: <a href="mailto:info@mpl.com.sa">info@mpl.com.sa</a></p></div>
+    <div class="prv-sec"><h3 data-ar="ملفات تعريف الارتباط" data-en="Cookies">ملفات تعريف الارتباط</h3><p data-ar="لا يستخدم هذا الموقع ملفات تعريف الارتباط لتتبع الزوار أو جمع البيانات التحليلية." data-en="This website does not use cookies to track visitors or collect analytical data.">لا يستخدم هذا الموقع ملفات تعريف الارتباط لتتبع الزوار أو جمع البيانات التحليلية.</p></div>
+    <div class="prv-sec"><h3 data-ar="تحديثات السياسة" data-en="Policy Updates">تحديثات السياسة</h3><p data-ar="قد تُحدَّث هذه السياسة بشكل دوري. آخر تحديث: يناير 2025." data-en="This policy may be updated periodically. Last updated: January 2025.">قد تُحدَّث هذه السياسة بشكل دوري. آخر تحديث: يناير 2025.</p></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="nb">
+  <a href="#hero" class="logo">MPL<span>.</span></a>
+  <ul class="nav-c">
+    <li><a href="#about" data-ar="من نحن" data-en="About">من نحن</a></li>
+    <li><a href="#services" data-ar="خدماتنا" data-en="Services">خدماتنا</a></li>
+    <li><a href="#projects" data-ar="مشاريعنا" data-en="Projects">مشاريعنا</a></li>
+    <li><a href="#clients" data-ar="شركاؤنا" data-en="Partners">شركاؤنا</a></li>
+    <li><a href="#ceo" data-ar="رسالة المدير" data-en="CEO Message">رسالة المدير</a></li>
+  </ul>
+  <div class="nav-r">
+    <div class="lt">
+      <button class="lb on" id="bAR" onclick="setL('ar')">ع</button>
+      <button class="lb" id="bEN" onclick="setL('en')">EN</button>
+    </div>
+    <a href="#contact" class="ncta" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hgrid"></div>
+  <div class="hinner">
+    <div class="eb"><span class="ebl"></span><span data-ar="MPL للتصميم والبناء · الرياض، المملكة العربية السعودية" data-en="MPL Design & Build · Riyadh, Saudi Arabia">MPL للتصميم والبناء · الرياض، المملكة العربية السعودية</span></div>
+    <h1>
+      <span data-ar="نبني " data-en="We Build ">نبني </span><span class="ac" data-ar="المستقبل" data-en="the Future">المستقبل</span><br/>
+      <span data-ar="برؤية عصرية" data-en="with a Modern Vision">برؤية عصرية</span><br/>
+      <span data-ar="وتميّز راسخ." data-en="and Lasting Excellence.">وتميّز راسخ.</span>
+    </h1>
+    <p class="hd" data-ar="شركة مشاريع عصرية للمقاولات — رائدة سعودية في التشييد والحلول الهندسية المتكاملة. نتخصص في الأعمال المدنية وأنظمة MEP والحماية من الحريق، ملتزمين بكود البناء السعودي والمعايير الدولية في كل مشروع." data-en="Modern Project Leaders Co. (MPL) — a Saudi leader in construction and integrated engineering. Specializing in civil works, MEP systems, and fire protection, committed to the Saudi Building Code and international standards on every project.">شركة مشاريع عصرية للمقاولات — رائدة سعودية في التشييد والحلول الهندسية المتكاملة. نتخصص في الأعمال المدنية وأنظمة MEP والحماية من الحريق، ملتزمين بكود البناء السعودي والمعايير الدولية في كل مشروع.</p>
+    <div class="hbtns">
+      <a href="#projects" class="bp" data-ar="استعرض مشاريعنا" data-en="View Our Projects">استعرض مشاريعنا</a>
+      <a href="#contact" class="bg2" data-ar="تواصل معنا ←" data-en="Get in Touch →">تواصل معنا ←</a>
+    </div>
+  </div>
+  <div class="hstats">
+    <div><div class="sn" data-count="4">4</div><div class="sl" data-ar="خدمات متكاملة" data-en="Core Services">خدمات متكاملة</div></div>
+    <div><div class="sn" data-count="5">5</div><div class="sl" data-ar="مشاريع منجزة+" data-en="Delivered Projects+">مشاريع منجزة+</div></div>
+    <div><div class="sn" data-count="3">3</div><div class="sl" data-ar="مدن سعودية" data-en="Saudi Cities">مدن سعودية</div></div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div id="trust">
+  <div class="ts-inner">
+    <div class="ts-label" data-ar="الامتثال والمعايير" data-en="Compliance & Standards">الامتثال والمعايير</div>
+    <div class="ts-badges">
+      <div class="ts-badge"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M7 1L13 4v4C13 11 7 13 7 13S1 11 1 8V4Z"/><polyline points="4,7 6,9.5 10,5"/></svg><span data-ar="كود البناء السعودي SBC" data-en="Saudi Building Code SBC">كود البناء السعودي SBC</span></div>
+      <div class="ts-badge"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M7 1L13 4v4C13 11 7 13 7 13S1 11 1 8V4Z"/><polyline points="4,7 6,9.5 10,5"/></svg><span>NFPA Compliant</span></div>
+      <div class="ts-badge"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M7 1L13 4v4C13 11 7 13 7 13S1 11 1 8V4Z"/><polyline points="4,7 6,9.5 10,5"/></svg><span>IEC Standards</span></div>
+      <div class="ts-badge"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="1" y="3" width="12" height="9" rx="1"/><line x1="1" y1="6" x2="13" y2="6"/></svg><span data-ar="متوافق مع رؤية 2030" data-en="Vision 2030 Aligned">متوافق مع رؤية 2030</span></div>
+    </div>
+    <a href="MPL-Company-Profile.pdf" download class="ts-dl"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M7 1v8M4 6l3 3 3-3"/><path d="M1 10v2a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-2"/></svg><span data-ar="تحميل ملف الشركة" data-en="Download Company Profile">تحميل ملف الشركة</span></a>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="inner">
+    <div class="ag">
+      <div class="rv">
+        <div class="eye" data-ar="من نحن" data-en="About MPL">من نحن</div>
+        <h2><span data-ar="أكثر من مجرد بنّائين." data-en="More Than Builders.">أكثر من مجرد بنّائين.</span><br/><span class="a" data-ar="شركاء في التقدم." data-en="Partners in Progress.">شركاء في التقدم.</span></h2>
+        <p class="ab" data-ar="&lt;strong&gt;MPL&lt;/strong&gt; شركة سعودية رائدة في التشييد والحلول الهندسية المتكاملة. نتخصص في الأعمال المدنية وأنظمة MEP وأنظمة الحماية من الحريق، مقدمين مشاريع تجمع بين الابتكار والجودة والاستدامة." data-en="&lt;strong&gt;MPL&lt;/strong&gt; is a Saudi leader in construction and integrated engineering. We specialize in civil works, MEP systems, and fire protection, delivering projects that combine innovation, quality, and sustainability."><strong>MPL</strong> شركة سعودية رائدة في التشييد والحلول الهندسية المتكاملة. نتخصص في الأعمال المدنية وأنظمة MEP وأنظمة الحماية من الحريق، مقدمين مشاريع تجمع بين الابتكار والجودة والاستدامة.</p>
+        <p class="ab" data-ar="بالتزام راسخ بـ&lt;strong&gt;كود البناء السعودي (SBC)&lt;/strong&gt; والمعايير الدولية كـNFPA وIEC، نحوّل الرؤى إلى واقع ونبني شراكات دائمة قائمة على الثقة والتميز. مشاريعنا تمتد من الفلل الخاصة إلى المرافق التجارية والصحية الكبرى." data-en="With unwavering commitment to the &lt;strong&gt;Saudi Building Code (SBC)&lt;/strong&gt; and international standards including NFPA and IEC, we turn visions into reality and build lasting partnerships. Our projects span private villas to large-scale commercial and healthcare facilities.">بالتزام راسخ بـ<strong>كود البناء السعودي (SBC)</strong> والمعايير الدولية كـNFPA وIEC، نحوّل الرؤى إلى واقع ونبني شراكات دائمة قائمة على الثقة والتميز. مشاريعنا تمتد من الفلل الخاصة إلى المرافق التجارية والصحية الكبرى.</p>
+      </div>
+      <div class="vms rv">
+        <div class="vmb"><div class="vmt" data-ar="رؤيتنا" data-en="Our Vision">رؤيتنا</div><div class="vmx" data-ar="أن نكون المزود الرائد لحلول المقاولات المتكاملة في المملكة العربية السعودية، معترفاً بنا في الجودة والابتكار والامتثال للمعايير الوطنية والدولية." data-en="To be a leading provider of integrated contracting solutions in Saudi Arabia, recognized for quality, innovation, and compliance with national and international standards.">أن نكون المزود الرائد لحلول المقاولات المتكاملة في المملكة العربية السعودية، معترفاً بنا في الجودة والابتكار والامتثال للمعايير الوطنية والدولية.</div></div>
+        <div class="vmb"><div class="vmt" data-ar="مهمتنا" data-en="Our Mission">مهمتنا</div><div class="vmx" data-ar="إعادة تعريف المقاولات الحديثة من خلال دمج التميز الهندسي والحلول الذكية والسلامة في صميم كل مشروع — لنجعل MPL رمزاً للثقة والابتكار والأثر الوطني." data-en="To redefine modern contracting by integrating engineering excellence, smart solutions, and safety at the heart of every project — making MPL a symbol of trust, innovation, and national impact.">إعادة تعريف المقاولات الحديثة من خلال دمج التميز الهندسي والحلول الذكية والسلامة في صميم كل مشروع — لنجعل MPL رمزاً للثقة والابتكار والأثر الوطني.</div></div>
+        <div class="vmb"><div class="vmt" data-ar="التزامنا" data-en="Our Commitment">التزامنا</div><div class="vmx" data-ar="التوافق الكامل مع SBC وNFPA والمعايير الدولية. تسليم المشاريع في الوقت المحدد وضمن الميزانية وبأعلى معايير الجودة — دون تنازل." data-en="Full compliance with SBC, NFPA, and international standards. Delivering projects on time, within budget, and to the highest standards of quality — without compromise.">التوافق الكامل مع SBC وNFPA والمعايير الدولية. تسليم المشاريع في الوقت المحدد وضمن الميزانية وبأعلى معايير الجودة — دون تنازل.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="inner">
+    <div class="rv" style="margin-bottom:48px">
+      <div class="eye" data-ar="خدماتنا" data-en="What We Do">خدماتنا</div>
+      <h2><span data-ar="خدمات هندسية وإنشائية" data-en="Engineering &amp; Construction">خدمات هندسية وإنشائية</span><br/><span class="a" data-ar="متكاملة" data-en="Services">متكاملة</span></h2>
+    </div>
+    <div class="sg">
+      <div class="sc2 rv"><div class="sn2">01</div><svg class="sico" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="6" y="18" width="32" height="20" rx="1"/><polyline points="2,18 22,4 42,18"/><line x1="17" y1="38" x2="17" y2="26"/><line x1="27" y1="38" x2="27" y2="26"/><rect x="17" y="26" width="10" height="12"/></svg><div class="snm" data-ar="التصميم والبناء" data-en="Design & Build">التصميم والبناء</div><div class="sdx" data-ar="نهج شامل يدمج مفاهيم التصميم المبتكر مع أساليب البناء الفعّالة. من التصور إلى التنفيذ، نحول أفكاركم إلى تحف معمارية عبر رحلة تعاونية سلسة." data-en="A holistic approach integrating innovative design concepts with efficient construction techniques. From conceptualisation to realization, we turn your ideas into architectural masterpieces.">نهج شامل يدمج مفاهيم التصميم المبتكر مع أساليب البناء الفعّالة. من التصور إلى التنفيذ، نحول أفكاركم إلى تحف معمارية عبر رحلة تعاونية سلسة.</div></div>
+      <div class="sc2 rv"><div class="sn2">02</div><svg class="sico" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="4" y="4" width="36" height="36" rx="1"/><line x1="4" y1="14" x2="40" y2="14"/><line x1="14" y1="14" x2="14" y2="40"/><rect x="19" y="20" width="14" height="10" rx="1"/><line x1="4" y1="28" x2="14" y2="28"/><line x1="4" y1="22" x2="14" y2="22"/></svg><div class="snm" data-ar="التشطيبات الداخلية" data-en="Fit Out">التشطيبات الداخلية</div><div class="sdx" data-ar="تحويل الفراغات الخالية إلى بيئات نابضة بالحياة وعملية. تمزج خدماتنا بين الإبداع والوظيفية والاهتمام بالتفاصيل، لمساحات تجارية أو مكاتب أو مناطق سكنية." data-en="Transforming empty spaces into vibrant, functional environments. Our fit-out services blend creativity, functionality, and attention to detail — for commercial spaces, offices, or residential areas.">تحويل الفراغات الخالية إلى بيئات نابضة بالحياة وعملية. تمزج خدماتنا بين الإبداع والوظيفية والاهتمام بالتفاصيل، لمساحات تجارية أو مكاتب أو مناطق سكنية.</div></div>
+      <div class="sc2 rv"><div class="sn2">03</div><svg class="sico" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M22 8 A14 14 0 0 1 36 22"/><polyline points="36,16 36,22 30,22"/><path d="M22 36 A14 14 0 0 1 8 22"/><polyline points="8,28 8,22 14,22"/><circle cx="22" cy="22" r="4"/></svg><div class="snm" data-ar="الترميم والتجديد" data-en="Renovations">الترميم والتجديد</div><div class="sdx" data-ar="إعادة الروح للمنشآت القائمة لتلبية الاحتياجات الحديثة مع الحفاظ على طابعها الأصيل — من المعالم التاريخية إلى العقارات التجارية." data-en="Breathing new life into existing structures to meet modern needs while preserving their unique character — from historical landmarks to commercial properties.">إعادة الروح للمنشآت القائمة لتلبية الاحتياجات الحديثة مع الحفاظ على طابعها الأصيل — من المعالم التاريخية إلى العقارات التجارية.</div></div>
+      <div class="sc2 rv"><div class="sn2">04</div><svg class="sico" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="22" cy="22" r="6"/><line x1="22" y1="4" x2="22" y2="16"/><line x1="22" y1="28" x2="22" y2="40"/><line x1="4" y1="22" x2="16" y2="22"/><line x1="28" y1="22" x2="40" y2="22"/><line x1="8" y1="8" x2="17" y2="17"/><line x1="27" y1="27" x2="36" y2="36"/><line x1="36" y1="8" x2="27" y2="17"/><line x1="17" y1="27" x2="8" y2="36"/></svg><div class="snm" data-ar="MEP والحماية من الحريق" data-en="MEP & Fire Protection">MEP والحماية من الحريق</div><div class="sdx" data-ar="حلول MEP متكاملة وأنظمة حماية متقدمة من الحريق. التصميم والتنفيذ والصيانة وفق SBC وNFPA وIEC." data-en="Integrated MEP solutions and advanced fire protection systems. Design, execution, and maintenance compliant with SBC, NFPA, and IEC standards.">حلول MEP متكاملة وأنظمة حماية متقدمة من الحريق. التصميم والتنفيذ والصيانة وفق SBC وNFPA وIEC.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FACTORS -->
+<section id="factors">
+  <div class="inner">
+    <div class="ft">
+      <div class="rv"><div class="eye" data-ar="لماذا MPL" data-en="Why MPL">لماذا MPL</div><h2><span data-ar="ستة مبادئ" data-en="Six Principles">ستة مبادئ</span><br/><span class="a" data-ar="تُميّزنا" data-en="That Define Us">تُميّزنا</span></h2></div>
+      <p class="fi rv" data-ar="كل مشروع تنجزه MPL يعكس منهجية صارمة تضمن التسليم في الوقت المحدد وضمن الميزانية وبأعلى معايير الجودة والامتثال." data-en="Every MPL project reflects a rigorous methodology ensuring on-time, on-budget delivery to the highest quality and compliance standards.">كل مشروع تنجزه MPL يعكس منهجية صارمة تضمن التسليم في الوقت المحدد وضمن الميزانية وبأعلى معايير الجودة والامتثال.</p>
+    </div>
+    <div class="fg">
+      <div class="fi2 rv"><svg class="fico" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M18 3 L33 10 L33 20 C33 27 18 33 18 33 C18 33 3 27 3 20 L3 10 Z"/><polyline points="11,18 16,23 25,13"/></svg><div class="ftag" data-ar="السلامة أولاً" data-en="Safety First">السلامة أولاً</div><div class="fdsc" data-ar="نولي السلامة الأولوية في كل مرحلة — من التصميم إلى التنفيذ — دون أي تنازل." data-en="We prioritize the safety of people and property at every stage — from design to execution — without compromise.">نولي السلامة الأولوية في كل مرحلة — من التصميم إلى التنفيذ — دون أي تنازل.</div></div>
+      <div class="fi2 rv"><svg class="fico" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="4" y="20" width="8" height="12"/><rect x="14" y="12" width="8" height="20"/><rect x="24" y="6" width="8" height="26"/><line x1="4" y1="4" x2="32" y2="4"/></svg><div class="ftag" data-ar="الإدارة الاستباقية" data-en="Proactive Management">الإدارة الاستباقية</div><div class="fdsc" data-ar="التخطيط الدقيق وضبط التكاليف والتوزيع الفعّال للموارد لضمان التسليم في الموعد وضمن الميزانية." data-en="Timely planning, accurate cost control, and efficient resource allocation ensure on-time, on-budget project delivery.">التخطيط الدقيق وضبط التكاليف والتوزيع الفعّال للموارد لضمان التسليم في الموعد وضمن الميزانية.</div></div>
+      <div class="fi2 rv"><svg class="fico" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="18" cy="11" r="5"/><path d="M8 32 C8 24 28 24 28 32"/><line x1="4" y1="20" x2="10" y2="20"/><line x1="26" y1="20" x2="32" y2="20"/></svg><div class="ftag" data-ar="نهج موجّه للعميل" data-en="Client-Centred">نهج موجّه للعميل</div><div class="fdsc" data-ar="نصمم خدماتنا وفق الاحتياجات الفريدة لكل عميل مع الحفاظ على التواصل المفتوح والمرونة طوال المشروع." data-en="We tailor our services to the unique needs of each client, maintaining open communication and flexibility throughout.">نصمم خدماتنا وفق الاحتياجات الفريدة لكل عميل مع الحفاظ على التواصل المفتوح والمرونة طوال المشروع.</div></div>
+      <div class="fi2 rv"><svg class="fico" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="18" cy="18" r="5"/><circle cx="6" cy="10" r="3.5"/><circle cx="30" cy="10" r="3.5"/><circle cx="6" cy="26" r="3.5"/><circle cx="30" cy="26" r="3.5"/><line x1="9.5" y1="10" x2="13" y2="14"/><line x1="26.5" y1="10" x2="23" y2="14"/><line x1="9.5" y1="26" x2="13" y2="22"/><line x1="26.5" y1="26" x2="23" y2="22"/></svg><div class="ftag" data-ar="التكامل الكامل" data-en="Full Integration">التكامل الكامل</div><div class="fdsc" data-ar="فريقنا متعدد التخصصات يضمن التنسيق السلس بين الأعمال المعمارية والإنشائية وأنظمة MEP والسلامة." data-en="Our multidisciplinary team ensures seamless coordination between architectural, structural, MEP, and safety systems.">فريقنا متعدد التخصصات يضمن التنسيق السلس بين الأعمال المعمارية والإنشائية وأنظمة MEP والسلامة.</div></div>
+      <div class="fi2 rv"><svg class="fico" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="18" cy="18" r="14"/><polyline points="10,18 15,23 26,12"/></svg><div class="ftag" data-ar="الجودة والامتثال" data-en="Quality & Compliance">الجودة والامتثال</div><div class="fdsc" data-ar="التزام صارم بكود البناء السعودي وNFPA والمعايير الدولية لضمان حلول آمنة ومتينة في كل مشروع." data-en="Strict adherence to the Saudi Building Code, NFPA, and international standards to ensure safe and durable solutions.">التزام صارم بكود البناء السعودي وNFPA والمعايير الدولية لضمان حلول آمنة ومتينة في كل مشروع.</div></div>
+      <div class="fi2 rv"><svg class="fico" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="4" y="4" width="28" height="28" rx="2"/><line x1="4" y1="12" x2="32" y2="12"/><circle cx="18" cy="22" r="5"/><line x1="18" y1="17" x2="18" y2="19"/><line x1="18" y1="25" x2="18" y2="27"/><line x1="13" y1="22" x2="15" y2="22"/><line x1="21" y1="22" x2="23" y2="22"/></svg><div class="ftag" data-ar="الدعم التقني" data-en="Technical Support">الدعم التقني</div><div class="fdsc" data-ar="مكتبنا التقني الداخلي يوفر دعم التصميم الكامل ورسومات التنفيذ وموافقات الجهات المختصة والهندسة القيّمة." data-en="Our in-house technical office provides full design support, shop drawings, authority approvals, and value engineering.">مكتبنا التقني الداخلي يوفر دعم التصميم الكامل ورسومات التنفيذ وموافقات الجهات المختصة والهندسة القيّمة.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="inner">
+    <div class="rv" style="margin-bottom:48px"><div class="eye" data-ar="مشاريعنا" data-en="Our Work">مشاريعنا</div><h2><span data-ar="منجزة في أرجاء" data-en="Delivered Across">منجزة في أرجاء</span><br/><span class="a" data-ar="المملكة" data-en="the Kingdom">المملكة</span></h2></div>
+    <div class="pg">
+      <div class="pc big rv">
+        <div class="pcity" data-ar="الرياض · مشروع مميز" data-en="Riyadh · Featured Project">الرياض · مشروع مميز</div>
+        <div class="ptag"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.3"><polyline points="1,5 4,8 9,2"/></svg><span data-ar="مُسلَّم بالكامل" data-en="Fully Delivered">مُسلَّم بالكامل</span></div>
+        <div class="pnm" data-ar="شركة عطر العقارية — مجمع 6 مبانٍ" data-en="Atter Real Estate CO — 6-Building Complex">شركة عطر العقارية — مجمع 6 مبانٍ</div>
+        <div class="prows">
+          <div class="prow"><div class="plbl" data-ar="النطاق" data-en="Scope">النطاق</div><div class="pval" data-ar="هيكل كامل Core & Shell · MEP · أنظمة الحريق · تشطيبات نهائية" data-en="Full Core & Shell · MEP · Fire Systems · Full Finishing">هيكل كامل Core &amp; Shell · MEP · أنظمة الحريق · تشطيبات نهائية</div></div>
+          <div class="prow"><div class="plbl" data-ar="العميل" data-en="Client">العميل</div><div class="pval" data-ar="شركة عطر العقارية" data-en="Atter Real Estate CO">شركة عطر العقارية</div></div>
+          <div class="prow"><div class="plbl" data-ar="الموقع" data-en="Location">الموقع</div><div class="pval" data-ar="الرياض، العرقة" data-en="Riyadh, Irqah">الرياض، العرقة</div></div>
+          <div class="prow"><div class="plbl" data-ar="النتيجة" data-en="Outcome">النتيجة</div><div class="pval" data-ar="6 مبانٍ مكتملة وجاهزة للتشغيل · تسليم ضمن نطاق العقد الكامل" data-en="6 buildings fully complete and operational · Delivered within full contract scope">6 مبانٍ مكتملة وجاهزة للتشغيل · تسليم ضمن نطاق العقد الكامل</div></div>
+        </div>
+        <div class="pamt"><div class="psar">8,000,000</div><div class="psarl" data-ar="ريال سعودي — إجمالي قيمة المشروع" data-en="SAR — Total Project Value">ريال سعودي — إجمالي قيمة المشروع</div></div>
+      </div>
+      <div class="pc rv">
+        <div class="pcity" data-ar="جدة · مستودع تجاري" data-en="Jeddah · Commercial Warehouse">جدة · مستودع تجاري</div>
+        <div class="ptag"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.3"><polyline points="1,5 4,8 9,2"/></svg><span data-ar="مُسلَّم بالكامل" data-en="Fully Delivered">مُسلَّم بالكامل</span></div>
+        <div class="pnm" data-ar="مستودع شركة ميديسيرف" data-en="Mediserv CO Warehouse">مستودع شركة ميديسيرف</div>
+        <div class="prows">
+          <div class="prow"><div class="plbl" data-ar="النطاق" data-en="Scope">النطاق</div><div class="pval" data-ar="هيكل كامل · MEP · أنظمة الحريق · تشطيبات" data-en="Full Core & Shell · MEP · Fire · Finishing">هيكل كامل · MEP · أنظمة الحريق · تشطيبات</div></div>
+          <div class="prow"><div class="plbl" data-ar="النتيجة" data-en="Outcome">النتيجة</div><div class="pval" data-ar="مستودع جاهز للتشغيل · ممتثل لمعايير السلامة" data-en="Warehouse fully operational · Safety-compliant handover">مستودع جاهز للتشغيل · ممتثل لمعايير السلامة</div></div>
+        </div>
+        <div class="pamt"><div class="psar">6,000,000</div><div class="psarl" data-ar="ريال سعودي" data-en="SAR">ريال سعودي</div></div>
+      </div>
+      <div class="pc rv">
+        <div class="pcity" data-ar="الدمام · معرض تجاري" data-en="Dammam · Commercial Exhibition">الدمام · معرض تجاري</div>
+        <div class="ptag"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.3"><polyline points="1,5 4,8 9,2"/></svg><span data-ar="مُسلَّم بالكامل" data-en="Fully Delivered">مُسلَّم بالكامل</span></div>
+        <div class="pnm" data-ar="مزايا الدولية — معرض 500 وحدة تجارية" data-en="Mazaya Intl — 500 Commercial Exhibition">مزايا الدولية — معرض 500 وحدة تجارية</div>
+        <div class="prows">
+          <div class="prow"><div class="plbl" data-ar="النطاق" data-en="Scope">النطاق</div><div class="pval" data-ar="هيكل كامل · MEP · أنظمة الحريق · تشطيبات" data-en="Full Core & Shell · MEP · Fire · Finishing">هيكل كامل · MEP · أنظمة الحريق · تشطيبات</div></div>
+          <div class="prow"><div class="plbl" data-ar="النتيجة" data-en="Outcome">النتيجة</div><div class="pval" data-ar="500 وحدة تجارية مكتملة وجاهزة للإيجار" data-en="500 commercial units complete and ready for occupancy">500 وحدة تجارية مكتملة وجاهزة للإيجار</div></div>
+        </div>
+        <div class="pamt"><div class="psar">5,005,955</div><div class="psarl" data-ar="ريال سعودي" data-en="SAR">ريال سعودي</div></div>
+      </div>
+      <div class="pc rv">
+        <div class="pcity" data-ar="الرياض · قطاع حكومي" data-en="Riyadh · Government Sector">الرياض · قطاع حكومي</div>
+        <div class="ptag"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.3"><polyline points="1,5 4,8 9,2"/></svg><span data-ar="مُسلَّم بالكامل" data-en="Fully Delivered">مُسلَّم بالكامل</span></div>
+        <div class="pnm" data-ar="برج اتحاد الغرف السعودية" data-en="Federation of Saudi Chambers Tower">برج اتحاد الغرف السعودية</div>
+        <div class="prows">
+          <div class="prow"><div class="plbl" data-ar="النطاق" data-en="Scope">النطاق</div><div class="pval" data-ar="MEP · حماية من الحريق · تشطيبات داخلية" data-en="MEP · Fire Protection · Fit Out">MEP · حماية من الحريق · تشطيبات داخلية</div></div>
+          <div class="prow"><div class="plbl" data-ar="النتيجة" data-en="Outcome">النتيجة</div><div class="pval" data-ar="تسليم ناجح لمبنى حكومي بمعايير تقنية متكاملة" data-en="Successful delivery of government tower to full technical specification">تسليم ناجح لمبنى حكومي بمعايير تقنية متكاملة</div></div>
+        </div>
+        <div class="pamt"><div class="psar">4,000,000</div><div class="psarl" data-ar="ريال سعودي" data-en="SAR">ريال سعودي</div></div>
+      </div>
+      <div class="pc rv">
+        <div class="pcity" data-ar="الرياض · صناعي" data-en="Riyadh · Industrial">الرياض · صناعي</div>
+        <div class="ptag"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.3"><polyline points="1,5 4,8 9,2"/></svg><span data-ar="مُسلَّم بالكامل" data-en="Fully Delivered">مُسلَّم بالكامل</span></div>
+        <div class="pnm" data-ar="مستودع شركة أجيليتي" data-en="Agility Warehouse">مستودع شركة أجيليتي</div>
+        <div class="prows">
+          <div class="prow"><div class="plbl" data-ar="النطاق" data-en="Scope">النطاق</div><div class="pval" data-ar="أنظمة HVAC والحماية من الحريق" data-en="HVAC · Fire Protection Systems">أنظمة HVAC والحماية من الحريق</div></div>
+          <div class="prow"><div class="plbl" data-ar="الموقع" data-en="Location">الموقع</div><div class="pval" data-ar="الرياض، السليّ" data-en="Riyadh, Alsulay">الرياض، السليّ</div></div>
+          <div class="prow"><div class="plbl" data-ar="النتيجة" data-en="Outcome">النتيجة</div><div class="pval" data-ar="تركيب HVAC والحريق وفق NFPA · مستودع جاهز للتشغيل" data-en="HVAC & fire systems to NFPA · Warehouse operational">تركيب HVAC والحريق وفق NFPA · مستودع جاهز للتشغيل</div></div>
+        </div>
+        <div class="pamt"><div class="psar">1,300,000</div><div class="psarl" data-ar="ريال سعودي" data-en="SAR">ريال سعودي</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section id="values" style="background:var(--c1)">
+  <div class="inner">
+    <div class="rv" style="text-align:center"><div class="eye" style="justify-content:center" data-ar="قيمنا" data-en="Our Values">قيمنا</div><h2 style="text-align:center"><span data-ar="أساس كل ما نبنيه" data-en="The Foundation of">أساس كل ما نبنيه</span><br/><span class="a" data-ar="وكل شيء نقوم به" data-en="Everything We Do">وكل شيء نقوم به</span></h2></div>
+    <div class="vg">
+      <div class="vc rv"><svg class="vico" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M20 4 L24 14 L36 14 L26 21 L30 32 L20 25 L10 32 L14 21 L4 14 L16 14 Z"/></svg><div class="vnm" data-ar="الخدمة" data-en="Service">الخدمة</div><div class="vdsc" data-ar="الخدمة في صميم كل ما نقوم به. نلتزم بتقديم خدمة عملاء استثنائية تتجاوز التوقعات في كل مرحلة." data-en="Service is at the heart of everything we do. We provide unparalleled customer service, going above and beyond at every stage.">الخدمة في صميم كل ما نقوم به. نلتزم بتقديم خدمة عملاء استثنائية تتجاوز التوقعات في كل مرحلة.</div></div>
+      <div class="vc rv"><svg class="vico" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2"><line x1="20" y1="4" x2="20" y2="36"/><line x1="4" y1="14" x2="36" y2="14"/><circle cx="12" cy="27" r="6"/><circle cx="28" cy="27" r="6"/></svg><div class="vnm" data-ar="النزاهة" data-en="Integrity">النزاهة</div><div class="vdsc" data-ar="النزاهة غير قابلة للتفاوض. نتعامل بصدق وشفافية وسلوك أخلاقي رفيع في جميع جوانب أعمالنا." data-en="Integrity is non-negotiable. We conduct ourselves with honesty, transparency, and ethical behavior in all aspects of our business.">النزاهة غير قابلة للتفاوض. نتعامل بصدق وشفافية وسلوك أخلاقي رفيع في جميع جوانب أعمالنا.</div></div>
+      <div class="vc rv"><svg class="vico" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="14" cy="13" r="5"/><circle cx="26" cy="13" r="5"/><path d="M4 36 C4 27 24 27 24 36"/><path d="M16 36 C16 27 36 27 36 36"/></svg><div class="vnm" data-ar="العمل الجماعي" data-en="Teamwork">العمل الجماعي</div><div class="vdsc" data-ar="نجاحنا مبني على الجهود المشتركة لفريقنا المتنوع والموهوب، العامل معاً نحو هدف واحد." data-en="Our success is built on the collective efforts of our diverse and talented team, working together towards a common goal.">نجاحنا مبني على الجهود المشتركة لفريقنا المتنوع والموهوب، العامل معاً نحو هدف واحد.</div></div>
+      <div class="vc rv"><svg class="vico" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2"><polyline points="4,28 14,18 22,24 36,8"/><polyline points="28,8 36,8 36,16"/><line x1="4" y1="36" x2="36" y2="36"/></svg><div class="vnm" data-ar="النتائج" data-en="Results">النتائج</div><div class="vdsc" data-ar="نسعى بلا هوادة نحو تحقيق النتائج. نركّز على الابتكار والكفاءة والتحسين المستمر لتقديم قيمة حقيقية لعملائنا." data-en="We pursue results relentlessly. Focused on innovation, efficiency, and continuous improvement to deliver measurable outcomes and real value.">نسعى بلا هوادة نحو تحقيق النتائج. نركّز على الابتكار والكفاءة والتحسين المستمر لتقديم قيمة حقيقية لعملائنا.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section id="clients">
+  <div class="inner">
+    <div class="rv"><div class="eye" data-ar="شركاء النجاح" data-en="Success Partners">شركاء النجاح</div><h2><span data-ar="ثقة كبرى المؤسسات" data-en="Trusted by">ثقة كبرى المؤسسات</span><br/><span class="a" data-ar="والشركات" data-en="Industry Leaders">والشركات</span></h2></div>
+    <div class="cg">
+      <div class="cc rv">ARCOI</div><div class="cc rv">SAICO</div><div class="cc rv" data-ar="وزارة السياحة" data-en="Ministry of Tourism">وزارة السياحة</div><div class="cc rv">ROSHN</div><div class="cc rv">KAFD</div>
+      <div class="cc rv" data-ar="مستشفى الملك سلمان" data-en="King Salman Hospital">مستشفى الملك سلمان</div><div class="cc rv">SNB</div><div class="cc rv">OSUS</div><div class="cc rv" data-ar="الرياض فرونت" data-en="Riyadh Front">الرياض فرونت</div><div class="cc rv">Agility</div>
+      <div class="cc rv">Radisson</div><div class="cc rv" data-ar="موسم الرياض" data-en="Riyadh Season">موسم الرياض</div><div class="cc rv" data-ar="هيلتون الحمراء" data-en="Hilton Al Hamra">هيلتون الحمراء</div><div class="cc rv">Larrio S-Resorts</div><div class="cc rv" data-ar="بوليفارد الرياض" data-en="Riyadh Boulevard">بوليفارد الرياض</div>
+    </div>
+  </div>
+</section>
+
+<!-- CEO -->
+<section id="ceo" style="background:var(--c1)">
+  <div class="inner"><div class="ceoi rv">
+    <div class="eye" style="justify-content:center" data-ar="رسالة المدير التنفيذي" data-en="CEO Message">رسالة المدير التنفيذي</div>
+    <span class="qm">"</span>
+    <p class="ceotx" data-ar="في MPL، نفخر بأننا جزء من مسيرة تطوير المملكة، من خلال تقديم حلول مقاولات متكاملة وعالية الجودة تشمل الإنشاء المدني وأعمال MEP وأنظمة الحماية من الحريق. نسعى إلى أن نكون أكثر من مجرد شركة مقاولات — نحن شركاء في بناء المستقبل. بالتزامنا الراسخ بالجودة والسلامة والامتثال لكود البناء السعودي والمعايير الدولية، نؤمن بأن كل مشروع فرصة لتجاوز التوقعات وترك أثر دائم." data-en="At MPL, we take great pride in being part of the Kingdom's ongoing development, delivering integrated, high-quality contracting solutions across civil construction, MEP works, and fire protection. We strive to be more than just a contracting firm — we are partners in building the future. With unwavering commitment to quality, safety, and compliance with the Saudi Building Code and international standards, we believe every project is an opportunity to exceed expectations and leave a lasting impact.">في MPL، نفخر بأننا جزء من مسيرة تطوير المملكة، من خلال تقديم حلول مقاولات متكاملة وعالية الجودة تشمل الإنشاء المدني وأعمال MEP وأنظمة الحماية من الحريق. نسعى إلى أن نكون أكثر من مجرد شركة مقاولات — نحن شركاء في بناء المستقبل. بالتزامنا الراسخ بالجودة والسلامة والامتثال لكود البناء السعودي والمعايير الدولية، نؤمن بأن كل مشروع فرصة لتجاوز التوقعات وترك أثر دائم.</p>
+    <div class="ceodv"></div>
+    <div class="ceosig" data-ar="رسالة المدير التنفيذي" data-en="CEO Message">رسالة المدير التنفيذي</div>
+    <div class="ceosub" data-ar="MPL للتصميم والبناء" data-en="MPL Design & Build">MPL للتصميم والبناء</div>
+  </div></div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="inner">
+    <div class="cntg">
+      <div class="rv">
+        <div class="eye" data-ar="تواصل معنا" data-en="Get in Touch">تواصل معنا</div>
+        <h2><span data-ar="لنبنِ" data-en="Let's Build">لنبنِ</span><br/><span class="a" data-ar="معاً" data-en="Together">معاً</span></h2>
+        <p class="cntd" data-ar="نرحب بالتعاون معكم في مشروعكم القادم. تواصلوا معنا لنناقش كيف يمكن لـMPL تقديم حلول إنشائية متكاملة تُجسّد رؤيتكم بدقة واحترافية." data-en="We welcome the opportunity to partner with you on your next project. Reach out to discuss how MPL can deliver integrated construction solutions tailored to your vision.">نرحب بالتعاون معكم في مشروعكم القادم. تواصلوا معنا لنناقش كيف يمكن لـMPL تقديم حلول إنشائية متكاملة تُجسّد رؤيتكم بدقة واحترافية.</p>
+        <div class="cntis">
+          <div class="cnti"><div class="cntico"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 3h4l2 5-2.5 1.5A10 10 0 0 0 11.5 14.5L13 12l5 2v4a1 1 0 0 1-1 1C6.5 19 1 13.5 1 7a1 1 0 0 1 1-1z"/></svg></div><div><div class="cntlbl" data-ar="الهاتف" data-en="Phone">الهاتف</div><div class="cntval"><a href="tel:+966533132060" dir="ltr">+966 53 313 2060</a></div></div></div>
+          <div class="cnti"><div class="cntico"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="4" width="16" height="12" rx="1.5"/><polyline points="2,5 10,12 18,5"/></svg></div><div><div class="cntlbl" data-ar="البريد الإلكتروني" data-en="Email">البريد الإلكتروني</div><div class="cntval"><a href="mailto:info@mpl.com.sa">info@mpl.com.sa</a></div></div></div>
+          <div class="cnti"><div class="cntico"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M10 2C7 2 4 4.5 4 8c0 5 6 10 6 10s6-5 6-10c0-3.5-3-6-6-6z"/><circle cx="10" cy="8" r="2"/></svg></div><div><div class="cntlbl" data-ar="العنوان" data-en="Address">العنوان</div><div class="cntval" data-ar="شارع العليا، الرياض، المملكة العربية السعودية" data-en="Olaya Street, Riyadh, KSA">شارع العليا، الرياض، المملكة العربية السعودية</div></div></div>
+          <div class="cnti"><div class="cntico"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="2" width="16" height="16" rx="2"/><line x1="6" y1="9" x2="6" y2="15"/><line x1="6" y1="5" x2="6" y2="7"/><line x1="10" y1="15" x2="10" y2="11"/><path d="M10 11a3 3 0 0 1 6 0v4"/><line x1="16" y1="15" x2="16" y2="11"/></svg></div><div><div class="cntlbl" data-ar="لينكدإن" data-en="LinkedIn">لينكدإن</div><div class="cntval"><a href="https://www.linkedin.com/company/mpl-modern-project-leaders/" target="_blank" rel="noopener">LinkedIn</a></div></div></div>
+        </div>
+      </div>
+      <div class="rv">
+        <div class="cntbox">
+          <h3 data-ar="ابدأ مشروعك مع MPL" data-en="Start Your Project with MPL">ابدأ مشروعك مع MPL</h3>
+          <p data-ar="سواء كان مشروعاً ضخماً أو تشطيباً راقياً، فريقنا جاهز لتحويل رؤيتك إلى واقع — في الوقت المحدد، ضمن الميزانية، وبأعلى معايير الجودة." data-en="Whether a large infrastructure project or a premium fit-out, our team is ready to bring your vision to life — on time, within budget, to the highest standards.">سواء كان مشروعاً ضخماً أو تشطيباً راقياً، فريقنا جاهز لتحويل رؤيتك إلى واقع — في الوقت المحدد، ضمن الميزانية، وبأعلى معايير الجودة.</p>
+          <div class="cntbs">
+            <a href="https://wa.me/966533132060" target="_blank" rel="noopener" class="cntb p"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2C5.6 2 2 5.6 2 10c0 1.4.4 2.8 1 4L2 18l4-1a8 8 0 1 0 4-15z"/></svg><span data-ar="تواصل عبر واتساب" data-en="WhatsApp Us">تواصل عبر واتساب</span></a>
+            <a href="mailto:info@mpl.com.sa" class="cntb g"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="2" y="4" width="16" height="12" rx="1.5"/><polyline points="2,5 10,12 18,5"/></svg><span data-ar="راسلنا عبر البريد" data-en="Send an Email">راسلنا عبر البريد</span></a>
+            <a href="tel:+966533132060" class="cntb g"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 3h4l2 5-2.5 1.5A10 10 0 0 0 11.5 14.5L13 12l5 2v4a1 1 0 0 1-1 1C6.5 19 1 13.5 1 7a1 1 0 0 1 1-1z"/></svg><span data-ar="اتصل بنا مباشرة" data-en="Call Directly">اتصل بنا مباشرة</span></a>
+            <a href="MPL-Company-Profile.pdf" download class="cntb g"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M10 2v10M7 9l3 3 3-3"/><path d="M3 14v3a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3"/></svg><span data-ar="تحميل ملف الشركة" data-en="Download Company Profile">تحميل ملف الشركة</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top inner">
+    <div>
+      <a href="#hero" class="flo">MPL<span>.</span></a>
+      <p class="f-tagline" data-ar="شركة مشاريع عصرية للمقاولات — حلول إنشائية وهندسية متكاملة في المملكة العربية السعودية." data-en="Modern Project Leaders Co. — integrated construction and engineering solutions in Saudi Arabia.">شركة مشاريع عصرية للمقاولات — حلول إنشائية وهندسية متكاملة في المملكة العربية السعودية.</p>
+      <div class="f-contact-row"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M2 2h3l1.5 3.5-2 1A8 8 0 0 0 9.5 11L10.5 9l3.5 1.5v3a.7.7 0 0 1-.7.7C5.5 14.2 0 8.3 0 2.7A.7.7 0 0 1 .7 2z" transform="scale(0.95)"/></svg><a href="tel:+966533132060" dir="ltr">+966 53 313 2060</a></div>
+      <div class="f-contact-row"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="1" y="2.5" width="12" height="9" rx="1"/><polyline points="1,3.5 7,8.5 13,3.5"/></svg><a href="mailto:info@mpl.com.sa">info@mpl.com.sa</a></div>
+      <div class="f-contact-row"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M7 1C5 1 3 2.8 3 5c0 3.5 4 7 4 7s4-3.5 4-7c0-2.2-2-4-4-4z"/><circle cx="7" cy="5" r="1.5"/></svg><span data-ar="شارع العليا، الرياض، المملكة العربية السعودية" data-en="Olaya Street, Riyadh, KSA">شارع العليا، الرياض، المملكة العربية السعودية</span></div>
+    </div>
+    <div>
+      <div class="f-col-title" data-ar="روابط سريعة" data-en="Quick Links">روابط سريعة</div>
+      <div class="f-links">
+        <a href="#about" data-ar="من نحن" data-en="About">من نحن</a>
+        <a href="#services" data-ar="خدماتنا" data-en="Services">خدماتنا</a>
+        <a href="#projects" data-ar="مشاريعنا" data-en="Projects">مشاريعنا</a>
+        <a href="#clients" data-ar="شركاؤنا" data-en="Partners">شركاؤنا</a>
+        <a href="#ceo" data-ar="رسالة المدير" data-en="CEO Message">رسالة المدير</a>
+        <a href="#contact" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</a>
+      </div>
+    </div>
+    <div>
+      <div class="f-col-title" data-ar="الامتثال" data-en="Compliance">الامتثال</div>
+      <div class="f-links">
+        <a href="#" data-ar="كود البناء السعودي SBC" data-en="Saudi Building Code SBC">كود البناء السعودي SBC</a>
+        <a href="#">NFPA Standards</a>
+        <a href="#">IEC Standards</a>
+        <a href="MPL-Company-Profile.pdf" download data-ar="تحميل ملف الشركة" data-en="Company Profile PDF">تحميل ملف الشركة</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom inner">
+    <div class="fcp" data-ar="© 2024–2025 شركة مشاريع عصرية للمقاولات · جميع الحقوق محفوظة · المملكة العربية السعودية" data-en="© 2024–2025 Modern Project Leaders Co. · All rights reserved · KSA">© 2024–2025 شركة مشاريع عصرية للمقاولات · جميع الحقوق محفوظة · المملكة العربية السعودية</div>
+    <div class="f-legal">
+      <a href="#" onclick="openPrivacy();return false;" data-ar="سياسة الخصوصية" data-en="Privacy Policy">سياسة الخصوصية</a>
+      <a href="https://wa.me/966533132060" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,26 +1,3 @@
-// ── CUSTOM CURSOR
-try {
-  var cur=document.getElementById('cursor'), ring=document.getElementById('cursor-ring');
-  if(window.matchMedia('(hover:hover)').matches && cur && ring){
-    var mx=window.innerWidth/2, my=window.innerHeight/2, rx=mx, ry=my;
-    cur.style.left=mx+'px'; cur.style.top=my+'px';
-    ring.style.left=rx+'px'; ring.style.top=ry+'px';
-    document.addEventListener('mousemove',function(e){
-      mx=e.clientX; my=e.clientY;
-      cur.style.left=mx+'px'; cur.style.top=my+'px';
-    });
-    (function animRing(){
-      rx+=(mx-rx)*.12; ry+=(my-ry)*.12;
-      ring.style.left=rx+'px'; ring.style.top=ry+'px';
-      requestAnimationFrame(animRing);
-    })();
-  } else {
-    if(cur) cur.style.display='none';
-    if(ring) ring.style.display='none';
-    document.body.style.cursor='auto';
-  }
-} catch(ex){}
-
 // ── SCROLL PROGRESS + NAV
 try {
   var spb=document.getElementById('spb'), nb=document.getElementById('nb');

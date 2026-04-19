@@ -251,11 +251,11 @@
 
     /* ═══ GLOBAL OVERFLOW SAFETY ═══ */
     html{overflow-x:hidden}
-    *{min-width:0}           /* prevents grid/flex children from blowing out width */
+    *{min-width:0}
 
     /* ═══ RESPONSIVE ═══ */
 
-    /* ── 1100px: small desktops / large tablets ── */
+    /* ── 1100px: small desktops / large tablets ─────────────────────────────── */
     @media(max-width:1100px){
       nav,section,footer,#trust{padding-inline:32px}
       #hero{padding-inline:32px}
@@ -268,65 +268,212 @@
       .hstats{inset-inline-start:32px}
     }
 
-    /* ── 768px: tablets & large phones ── */
+    /* ── 768px: MOBILE — full redesign ──────────────────────────────────────── */
     @media(max-width:768px){
-      /* ─ NAV ─ */
-      nav{padding:12px 20px;gap:8px}
+
+      /* ── NAV ──────────────────────────────────────────────── */
+      nav{padding:12px 20px;gap:0}
       .nav-c{display:none}
       .logo{font-size:22px;letter-spacing:4px}
-      .ncta{padding:8px 16px;font-size:11px;letter-spacing:.7px;white-space:nowrap}
+      .nav-r{gap:10px}
       .lb{padding:6px 11px;font-size:10.5px}
+      /* Hide the nav CTA — hero buttons handle it */
+      .ncta{display:none}
 
-      /* ─ HERO ─ */
-      #hero{padding:86px 20px 52px;min-height:unset;align-items:flex-start}
-      .hinner{max-width:100%;width:100%}
-      h1{font-size:clamp(34px,8vw,52px);letter-spacing:-.5px;margin-bottom:18px}
-      .eb{font-size:10px;letter-spacing:1.8px;margin-bottom:18px}
-      .ebl{width:24px}
-      .hd{font-size:13.5px;line-height:1.85;margin-bottom:28px;max-width:100%}
-      .hbtns{flex-direction:column;align-items:stretch;gap:10px;width:100%}
-      .bp{width:100%;text-align:center;padding:15px 20px;box-sizing:border-box}
-      .bg2{display:inline-flex;justify-content:center;padding:13px 0;width:100%;
-           border-bottom:none;border:1px solid rgba(255,255,255,.18);border-radius:2px;
-           padding:13px 16px;gap:8px}
-      .hstats{position:static;display:flex;flex-wrap:wrap;gap:18px 36px;
-              margin-top:32px;justify-content:flex-start}
-      .sn{font-size:34px}
-      .sl{font-size:9.5px;letter-spacing:1.8px}
+      /* ── HERO: centered column layout ────────────────────── */
+      #hero{
+        flex-direction:column;
+        align-items:center;
+        justify-content:flex-start;
+        padding:88px 20px 52px;
+        min-height:unset;
+      }
 
-      /* WhatsApp pulse rings — reduce radius so they don't cover content */
-      .wa-float::before,.wa-float::after{animation:waPulseSm 2.5s ease-out infinite}
-      .wa-float::after{animation-delay:1.2s}
-      @keyframes waPulseSm{0%{transform:scale(1);opacity:.65}100%{transform:scale(1.7);opacity:0}}
-      .wa-float{bottom:20px;inset-inline-end:18px;width:50px;height:50px}
-      .wa-float svg{width:22px;height:22px}
+      /* Center all hero text */
+      .hinner{
+        position:relative;
+        z-index:2;
+        width:100%;
+        max-width:100%;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+      }
 
-      /* ─ SECTIONS ─ */
-      section{padding:60px 20px}
-      h2{font-size:clamp(27px,6vw,42px)}
+      /* Eyebrow line */
+      .eb{
+        justify-content:center;
+        font-size:9.5px;
+        letter-spacing:1.8px;
+        margin-bottom:16px;
+      }
+      /* Hide decorative bar — cleaner centered layout */
+      .ebl{display:none}
+
+      /* Headline */
+      h1{
+        font-size:clamp(30px,8.5vw,50px);
+        text-align:center;
+        letter-spacing:-.5px;
+        line-height:1.14;
+        margin-bottom:16px;
+        max-width:100%;
+      }
+
+      /* Description */
+      .hd{
+        font-size:13.5px;
+        text-align:center;
+        max-width:100%;
+        line-height:1.88;
+        margin-bottom:28px;
+      }
+
+      /* CTA buttons: full-width, stacked */
+      .hbtns{
+        flex-direction:column;
+        align-items:stretch;
+        gap:10px;
+        width:100%;
+        max-width:440px;
+      }
+
+      /* Primary button */
+      .bp{
+        width:100%;
+        text-align:center;
+        padding:15px 20px;
+        font-size:12px;
+        letter-spacing:1.2px;
+      }
+
+      /* Secondary button — restyled as proper outlined button on mobile */
+      .bg2{
+        width:100%;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        padding:14px 16px;
+        gap:8px;
+        font-size:12px;
+        letter-spacing:1.2px;
+        border:1px solid rgba(255,255,255,.22);
+        border-radius:2px;
+        /* Override desktop underline-only style */
+        border-bottom:1px solid rgba(255,255,255,.22);
+      }
+      .bg2:hover{
+        color:var(--or);
+        border-color:var(--or);
+        border-bottom-color:var(--or);
+        gap:8px;
+      }
+
+      /* Stats: pull out of absolute, become card strip below buttons */
+      .hstats{
+        position:static;
+        z-index:2;
+        width:100%;
+        max-width:440px;
+        display:flex;
+        flex-direction:row;
+        gap:0;
+        margin-top:22px;
+        border:1px solid rgba(232,119,26,.22);
+        border-radius:3px;
+        overflow:hidden;
+        inset-inline-start:unset;
+        bottom:unset;
+        /* Keep entrance animation but start visible after content */
+        animation:fadeUp .8s .95s forwards;
+        opacity:0;
+      }
+      .hstats > div{
+        flex:1;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        padding:16px 8px;
+        text-align:center;
+        border-inline-end:1px solid rgba(232,119,26,.18);
+      }
+      .hstats > div:last-child{border-inline-end:none}
+      .sn{font-size:28px;line-height:1;text-align:center}
+      .sl{
+        font-size:8.5px;
+        letter-spacing:1.2px;
+        margin-top:5px;
+        line-height:1.4;
+        text-align:center;
+      }
+
+      /* ── TRUST STRIP: 2-col badge grid ─────────────────────── */
+      #trust{padding:20px}
+      .ts-inner{
+        flex-direction:column;
+        align-items:stretch;
+        gap:14px;
+      }
+      .ts-label{
+        font-size:9px;
+        letter-spacing:1.8px;
+        text-align:center;
+      }
+      .ts-badges{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:8px;
+        width:100%;
+      }
+      .ts-badge{
+        padding:10px 12px;
+        font-size:10px;
+        letter-spacing:.6px;
+        white-space:normal;
+        line-height:1.3;
+        align-items:flex-start;
+        gap:6px;
+      }
+      .ts-badge svg{margin-top:2px;flex-shrink:0}
+      /* Download button: full-width, centered */
+      .ts-dl{
+        width:100%;
+        justify-content:center;
+        padding:12px 16px;
+        font-size:11px;
+        letter-spacing:1px;
+        text-align:center;
+      }
+
+      /* ── SECTIONS base ──────────────────────────────────────── */
+      section{padding:56px 20px}
+      h2{font-size:clamp(26px,6.5vw,40px)}
       .eye{font-size:9.5px;letter-spacing:2px}
 
-      /* ─ TRUST STRIP ─ */
-      #trust{padding:16px 20px}
-      .ts-inner{flex-direction:column;align-items:flex-start;gap:14px}
-      .ts-badges{flex-wrap:wrap;gap:8px;width:100%}
-      .ts-badge{padding:7px 12px;font-size:10.5px;white-space:normal}
-      .ts-dl{align-self:flex-start}
-
-      /* ─ ABOUT ─ */
+      /* ── ABOUT ────────────────────────────────────────────── */
       .ag{grid-template-columns:1fr;gap:36px}
+      .ab{font-size:13.5px}
       .vmb{padding:20px 22px}
+      .vmt{font-size:9.5px;letter-spacing:2px}
+      .vmx{font-size:12.5px}
 
-      /* ─ SERVICES ─ */
+      /* ── SERVICES ────────────────────────────────────────── */
       .sg{grid-template-columns:1fr}
-      .sc2{padding:30px 22px}
+      .sc2{padding:28px 22px}
+      .snm{font-size:16px}
+      .sdx{font-size:13px}
 
-      /* ─ FACTORS ─ */
-      .ft{grid-template-columns:1fr;gap:22px;margin-bottom:32px}
-      .fg{grid-template-columns:1fr}
-      .fi2{padding:28px 22px}
+      /* ── FACTORS ──────────────────────────────────────────── */
+      .ft{grid-template-columns:1fr;gap:18px;margin-bottom:28px}
+      /* Keep 2-col on 768px for factors — each card is short enough */
+      .fg{grid-template-columns:1fr 1fr;gap:1px}
+      .fi2{padding:24px 18px}
+      .ftag{font-size:9.5px;letter-spacing:2px}
+      .fdsc{font-size:12.5px}
 
-      /* ─ PROJECTS ─ */
+      /* ── PROJECTS ──────────────────────────────────────────── */
       .pg{grid-template-columns:1fr}
       .pc{padding:26px 22px}
       .pc.big{grid-column:span 1}
@@ -335,76 +482,92 @@
       .psar{font-size:24px}
       .prow{gap:10px}
       .plbl{width:46px}
+      .pval{font-size:12.5px}
 
-      /* ─ VALUES ─ */
+      /* ── VALUES ────────────────────────────────────────────── */
       .vg{grid-template-columns:1fr 1fr;margin-top:36px}
       .vc{padding:28px 20px}
+      .vdsc{font-size:12px}
 
-      /* ─ CLIENTS ─ */
+      /* ── CLIENTS ────────────────────────────────────────────── */
       .cg{grid-template-columns:repeat(2,1fr);margin-top:36px}
       .cc{min-height:68px;padding:20px 12px;font-size:12.5px}
 
-      /* ─ CEO ─ */
+      /* ── CEO ────────────────────────────────────────────────── */
       .ceotx{font-size:14.5px;line-height:2}
       .qm{font-size:84px}
+      .ceosig{font-size:18px}
 
-      /* ─ CONTACT ─ */
-      .cntg{grid-template-columns:1fr;gap:36px}
+      /* ── CONTACT ────────────────────────────────────────────── */
+      .cntg{grid-template-columns:1fr;gap:32px}
+      .cntd{font-size:13.5px}
+      .cntis{gap:18px}
+      .cntico{width:38px;height:38px}
       .cntbox{padding:26px 22px}
+      .cntbox h3{font-size:22px}
       .cntbs{gap:9px}
       .cntb{padding:13px 18px;font-size:11.5px;letter-spacing:1px}
 
-      /* ─ FOOTER ─ */
-      footer{padding:42px 20px 26px}
+      /* ── FOOTER ────────────────────────────────────────────── */
+      footer{padding:44px 20px 28px}
       .footer-top{grid-template-columns:1fr;gap:36px}
       .footer-bottom{flex-direction:column;align-items:flex-start;gap:10px}
+      .f-tagline{font-size:12.5px}
 
-      /* ─ PRIVACY MODAL ─ */
-      .prv-box{padding:30px 22px;max-height:90vh}
+      /* ── WHATSAPP ───────────────────────────────────────────── */
+      /* Reduce pulse rings so they don't overlap content */
+      @keyframes waPulse{
+        0%{transform:scale(1);opacity:.6}
+        100%{transform:scale(1.75);opacity:0}
+      }
+      .wa-float{
+        width:50px;height:50px;
+        bottom:20px;
+        inset-inline-end:16px;
+      }
+      .wa-float svg{width:22px;height:22px}
+
+      /* ── PRIVACY MODAL ────────────────────────────────────── */
+      .prv-box{padding:28px 20px;max-height:90vh}
+      .prv-box h2{font-size:22px}
     }
 
-    /* ── 480px: compact phones — iPhone SE, small Android ── */
+    /* ── 480px: compact phones — iPhone SE, small Android ───────────────────── */
     @media(max-width:480px){
-      /* ─ NAV: hide CTA button, keep logo + lang toggle only ─ */
       nav{padding:10px 16px}
-      .ncta{display:none}
       .logo{font-size:20px;letter-spacing:3.5px}
-      .lb{padding:6px 10px;font-size:10px}
+      .lb{padding:5px 10px;font-size:10px}
 
-      /* ─ HERO ─ */
       #hero{padding:76px 16px 44px}
-      h1{font-size:clamp(30px,9vw,44px);line-height:1.1}
-      .eb{font-size:9.5px;letter-spacing:1.2px;margin-bottom:14px}
-      .ebl{width:20px}
+      h1{font-size:clamp(28px,9vw,42px);line-height:1.12}
+      .eb{font-size:9px;letter-spacing:1.4px;margin-bottom:14px}
       .hd{font-size:13px;margin-bottom:24px}
-      .bp{padding:14px 16px;font-size:11.5px;letter-spacing:1px}
-      .bg2{font-size:11.5px;padding:12px 14px}
-      .sn{font-size:30px}
-      .hstats{gap:14px 28px;margin-top:26px}
+      .hbtns{max-width:100%}
+      .bp{font-size:11.5px;padding:14px 16px;letter-spacing:1px}
+      .bg2{font-size:11.5px;padding:13px 14px}
+      .hstats{max-width:100%}
+      .hstats > div{padding:14px 6px}
+      .sn{font-size:26px}
+      .sl{font-size:8px;letter-spacing:1px}
 
-      /* ─ SECTIONS ─ */
-      section{padding:52px 16px}
-      #trust{padding:14px 16px}
-      h2{font-size:clamp(25px,7vw,36px)}
+      section{padding:48px 16px}
+      h2{font-size:clamp(24px,7vw,34px)}
 
-      /* ─ TRUST ─ */
+      #trust{padding:16px}
       .ts-label{display:none}
-      .ts-badge{font-size:10px;padding:5px 10px}
-      .ts-dl{width:100%;justify-content:center}
+      .ts-badge{font-size:9.5px;padding:8px 10px}
+      .ts-dl{font-size:10.5px;padding:11px 14px}
 
-      /* ─ SERVICES ─ */
-      .sc2{padding:26px 18px}
+      .sc2{padding:24px 18px}
       .snm{font-size:15px}
       .sdx{font-size:12px}
       .sico{width:34px;height:34px}
 
-      /* ─ FACTORS ─ */
+      /* Factors: 1-col on small phones */
+      .fg{grid-template-columns:1fr}
       .fi2{padding:22px 16px}
       .fico{width:28px;height:28px}
-      .ftag{font-size:9.5px}
-      .fdsc{font-size:12px}
 
-      /* ─ PROJECTS ─ */
       .pc{padding:22px 16px}
       .pnm{font-size:15px}
       .pc.big .pnm{font-size:17px}
@@ -413,67 +576,58 @@
       .plbl{font-size:8.5px;width:42px}
       .psarl{font-size:9px}
 
-      /* ─ VALUES ─ */
       .vg{grid-template-columns:1fr}
       .vc{padding:24px 18px;text-align:start}
-      .vico{margin:0 0 16px}
+      .vico{margin-inline-end:auto;margin-bottom:14px}
 
-      /* ─ CLIENTS ─ */
-      .cc{padding:18px 10px;font-size:12px;min-height:60px}
+      .cc{padding:16px 10px;font-size:12px;min-height:58px}
 
-      /* ─ CEO ─ */
       .ceotx{font-size:13.5px;line-height:1.9}
       .qm{font-size:64px}
       .ceosig{font-size:17px}
 
-      /* ─ CONTACT ─ */
-      .cntbox{padding:20px 16px}
-      .cntb{padding:12px 14px;font-size:11px;letter-spacing:.8px}
-      .cntb svg{width:13px;height:13px}
       .cntico{width:36px;height:36px}
       .cntico svg{width:15px;height:15px}
       .cntlbl{font-size:8.5px}
       .cntval{font-size:12.5px}
       .cntd{font-size:13px}
-      .cntis{gap:18px}
+      .cntbox{padding:20px 16px}
+      .cntbs{gap:8px}
+      .cntb{padding:12px 14px;font-size:11px;letter-spacing:.8px}
 
-      /* ─ FOOTER ─ */
       footer{padding:36px 16px 22px}
-      .flo{font-size:19px;letter-spacing:4px}
+      .flo{font-size:20px;letter-spacing:4px}
       .f-tagline{font-size:12px}
       .f-links a,.f-contact-row a,.f-contact-row span{font-size:12px}
       .fcp,.f-legal a{font-size:10.5px}
 
-      /* ─ PRIVACY MODAL ─ */
-      .prv-box{padding:24px 16px}
+      .prv-box{padding:22px 16px}
       .prv-box h2{font-size:20px}
 
-      /* ─ WhatsApp ─ */
       .wa-float{width:46px;height:46px;bottom:16px;inset-inline-end:14px}
       .wa-float svg{width:20px;height:20px}
     }
 
-    /* ── 390px: iPhone 14/15 Pro exact width ── */
+    /* ── 390px: iPhone 14/15 Pro ────────────────────────────────────────────── */
     @media(max-width:390px){
       nav{padding:10px 12px}
       .logo{font-size:19px;letter-spacing:3px}
 
-      #hero{padding:72px 12px 40px}
-      h1{font-size:clamp(28px,8.5vw,38px)}
+      #hero{padding:72px 14px 40px}
+      h1{font-size:clamp(26px,8.5vw,36px)}
       .hd{font-size:12.5px}
-      .hstats{gap:12px 24px}
-      .sn{font-size:28px}
+      .hstats > div{padding:13px 4px}
+      .sn{font-size:24px}
+      .sl{font-size:7.5px}
 
-      section{padding:48px 12px}
-      #trust{padding:12px}
-      footer{padding:32px 12px 18px}
-      h2{font-size:clamp(23px,7vw,32px)}
+      section{padding:44px 14px}
+      h2{font-size:clamp(22px,7vw,30px)}
+      #trust{padding:14px}
+      footer{padding:32px 14px 20px}
 
-      .ts-badge{font-size:9.5px;padding:4px 8px}
-      .cg{grid-template-columns:repeat(2,1fr)}
-      .cc{font-size:11.5px}
-
-      .pc{padding:20px 14px}
+      .ts-badge{font-size:9px;padding:7px 8px}
+      .ts-dl{font-size:10px}
       .cntbox{padding:18px 14px}
+      .pc{padding:20px 14px}
       .prv-box{padding:20px 14px}
     }

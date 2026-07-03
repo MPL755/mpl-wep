@@ -28,8 +28,15 @@
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 
-  <!-- 2. Lucide React icons (UMD → global LucideReact) -->
-  <script src="https://unpkg.com/lucide-react/dist/umd/lucide-react.js"></script>
+  <!-- 1a. Alias: lucide-react UMD references global.react (lowercase) but React CDN
+       sets window.React (uppercase). This one-liner bridges the gap. -->
+  <script>window.react = window.React;</script>
+
+  <!-- 2. Lucide React icons (UMD → global LucideReact).
+       Pinned to 0.460.0 — the last minor series that ships a /dist/umd/ build.
+       Latest v1.x dropped UMD entirely (only cjs + esm), so the unpinned URL
+       resolves to a 404, leaving LucideReact undefined and crashing the app. -->
+  <script src="https://unpkg.com/lucide-react@0.460.0/dist/umd/lucide-react.js"></script>
 
   <!-- 3. Babel standalone (JSX transpilation in-browser) -->
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
